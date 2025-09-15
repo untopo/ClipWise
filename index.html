@@ -655,22 +655,22 @@
     
            </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                <div class="bg-blue-50 dark:bg-blue-900/40 p-4 rounded-lg">
+            <div id="stats-drag-container" class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <div class="bg-blue-50 dark:bg-blue-900/40 p-4 rounded-lg sortable-card">
                     <h3 class="text-blue-700 dark:text-blue-300 font-medium mb-2">
                         <i class="fas fa-clock mr-2"></i>Average Call Duration
                 
          </h3>
                     <p id="avg-duration" class="text-2xl font-bold text-blue-800 dark:text-blue-200">00:00:00</p>
                 </div>
-                <div class="bg-green-50 dark:bg-green-900/40 p-4 rounded-lg">
+                <div class="bg-green-50 dark:bg-green-900/40 p-4 rounded-lg sortable-card">
                     <h3 class="text-green-700 dark:text-green-300 font-medium mb-2">
                         <i class="fas fa-bullseye mr-2"></i>Goal Progress
        
                   </h3>
                     <p id="goal-estimate" class="text-2xl font-bold text-green-800 dark:text-green-200">-- mins to goal</p>
                 </div>
-                <div class="bg-yellow-50 dark:bg-yellow-900/40 p-4 rounded-lg">
+                <div class="bg-yellow-50 dark:bg-yellow-900/40 p-4 rounded-lg sortable-card">
                     <h3 class="text-yellow-700 dark:text-yellow-300 font-medium mb-2">
                    
           <i class="fas fa-chart-line mr-2"></i>Today's Earnings
@@ -679,7 +679,7 @@
                 </div>
             </div>
     
-            <div id="monthly-earnings-cards" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div id="monthly-earnings-cards" class="grid grid-cols-1 md:grid-cols-3 gap-4 hidden">
                 <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg">
          
                 <h3 class="text-purple-700 dark:text-purple-300 font-medium mb-2">
@@ -712,7 +712,7 @@
             </div>
     
             <div id="payment-cycle-earnings-cards" class="grid grid-cols-1 md:grid-cols-3 gap-4 hidden">
-                <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg">
+                <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg sortable-card">
                     <h3 class="text-purple-700 dark:text-purple-300 font-medium mb-2">
                         <i class="fas 
  fa-money-bill-wave mr-2"></i>Current Cycle Earnings
@@ -722,7 +722,7 @@
                     </p>
                 </div>
                 
-     <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg">
+     <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg sortable-card">
                     <h3 class="text-purple-700 dark:text-purple-300 font-medium mb-2">
                         <i class="fas fa-calendar-check mr-2"></i>Cycle Progress
                     </h3>
@@ -745,7 +745,7 @@
                     </div>
                 </div>
            
-          <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg">
+          <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg sortable-card">
                     <h3 class="text-purple-700 dark:text-purple-300 font-medium mb-2">
                         <i class="fas fa-clock mr-2"></i>Pay Day Countdown
                     </h3>
@@ -1744,16 +1744,33 @@
         updateStorageInfo();
         renderPaymentCycles();
 
-        // New - Initialize SortableJS
+        // New - Initialize SortableJS for main cards
         const dragContainer = document.getElementById('drag-container');
         const sortable = new Sortable(dragContainer, {
             animation: 150, // Animation speed
             ghostClass: 'sortable-ghost', // Class for the drag ghost element
             onEnd: function (evt) {
-                // When a drag and drop operation ends, you could save the new order
-                // to local storage if you want it to persist.
-                console.log('New order:', sortable.toArray());
-                // Example: localStorage.setItem('cardOrder', JSON.stringify(sortable.toArray()));
+                console.log('Main card new order:', sortable.toArray());
+            }
+        });
+
+        // New - Initialize SortableJS for stat cards
+        const statsDragContainer = document.getElementById('stats-drag-container');
+        const statsSortable = new Sortable(statsDragContainer, {
+            animation: 150,
+            ghostClass: 'sortable-ghost',
+            onEnd: function (evt) {
+                console.log('Stat card new order:', statsSortable.toArray());
+            }
+        });
+
+        // New - Initialize SortableJS for payment cycle cards
+        const cycleDragContainer = document.getElementById('payment-cycle-earnings-cards');
+        const cycleSortable = new Sortable(cycleDragContainer, {
+            animation: 150,
+            ghostClass: 'sortable-ghost',
+            onEnd: function (evt) {
+                console.log('Payment cycle card new order:', cycleSortable.toArray());
             }
         });
     });
