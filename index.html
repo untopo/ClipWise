@@ -634,179 +634,179 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-8 sortable-card">
-    <div class="p-6">
-        <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
-            <i class="fas fa-chart-bar text-purple-500 mr-2"></i>Call Statistics
- 
-        </h2>
-        <div class="flex justify-between items-center mb-6">
-            <div class="flex items-center gap-4">
-                <input type="date" id="stats-date-picker"
-                       class="px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
-                />
- 
-                <button id="current-date-btn"
-                        class="px-4 py-2 bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors">
-                    Current Date
-                </button>
-            </div>
-  
-       </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-            <div class="bg-blue-50 dark:bg-blue-900/40 p-4 rounded-lg">
-                <h3 class="text-blue-700 dark:text-blue-300 font-medium mb-2">
-                    <i class="fas fa-clock mr-2"></i>Average Call Duration
-            
-     </h3>
-                <p id="avg-duration" class="text-2xl font-bold text-blue-800 dark:text-blue-200">00:00:00</p>
-            </div>
-            <div class="bg-green-50 dark:bg-green-900/40 p-4 rounded-lg">
-                <h3 class="text-green-700 dark:text-green-300 font-medium mb-2">
-                    <i class="fas fa-bullseye mr-2"></i>Goal Progress
-   
-              </h3>
-                <p id="goal-estimate" class="text-2xl font-bold text-green-800 dark:text-green-200">-- mins to goal</p>
-            </div>
-            <div class="bg-yellow-50 dark:bg-yellow-900/40 p-4 rounded-lg">
-                <h3 class="text-yellow-700 dark:text-yellow-300 font-medium mb-2">
-               
-      <i class="fas fa-chart-line mr-2"></i>Today's Earnings
-                </h3>
-                <p id="today-earnings" class="text-2xl font-bold text-yellow-800 dark:text-yellow-200">$0.00</p>
-            </div>
-        </div>
-
-        <div id="monthly-earnings-cards" class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg">
-     
-            <h3 class="text-purple-700 dark:text-purple-300 font-medium mb-2">
-                    <i class="fas fa-calendar-alt mr-2"></i>First Half of Month
-                </h3>
-                <p class="text-lg text-purple-800 dark:text-purple-200 font-bold">
-                    <span id="first-half-earnings">$0.00</span>
-  
-               </p>
-            </div>
-            <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg">
-                <h3 class="text-purple-700 dark:text-purple-300 font-medium mb-2">
-                    <i class="fas fa-calendar-alt mr-2"></i>Second Half of Month
-            
-     </h3>
-                <p class="text-lg text-purple-800 dark:text-purple-200 font-bold">
-                    <span id="second-half-earnings">$0.00</span>
-                </p>
-            </div>
-            <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg">
-           
-      <h3 class="text-purple-700 dark:text-purple-300 font-medium mb-2">
-                    <i class="fas fa-dollar-sign mr-2"></i>Total in Current Month
-                </h3>
-                <p class="text-lg text-purple-800 dark:text-purple-200 font-bold">
-                    <span id="monthly-total-earnings">$0.00</span>
-        
-         </p>
-            </div>
-        </div>
-
-        <div id="payment-cycle-earnings-cards" class="grid grid-cols-1 md:grid-cols-3 gap-4 hidden">
-            <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg">
-                <h3 class="text-purple-700 dark:text-purple-300 font-medium mb-2">
-                    <i class="fas 
- fa-money-bill-wave mr-2"></i>Current Cycle Earnings
-                </h3>
-                <p id="cycle-earnings" class="text-2xl font-bold text-purple-800 dark:text-purple-200">
-                    $0.00
-                </p>
-            </div>
-            
- <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg">
-                <h3 class="text-purple-700 dark:text-purple-300 font-medium mb-2">
-                    <i class="fas fa-calendar-check mr-2"></i>Cycle Progress
-                </h3>
-                <div class="text-sm text-gray-700 dark:text-gray-300">
-                 
-    <p class="mb-1">
-                        <i class="fas fa-calendar-day mr-2"></i>
-                        Start: <span id="cycle-start-date">N/A</span>
-                    </p>
-                    <p class="mb-1">
-  
-                       <i class="fas fa-calendar-day mr-2"></i>
-                        End: <span id="cycle-end-date">N/A</span>
-                    </p>
-                    <p>
-         
-                <i class="fas fa-calendar-check mr-2"></i>
-                        Days Left: <span id="days-until-end">N/A</span>
-                    </p>
+    
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden sortable-card">
+        <div class="p-6">
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
+                <i class="fas fa-chart-bar text-purple-500 mr-2"></i>Call Statistics
+    
+            </h2>
+            <div class="flex justify-between items-center mb-6">
+                <div class="flex items-center gap-4">
+                    <input type="date" id="stats-date-picker"
+                           class="px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
+                    />
+    
+                    <button id="current-date-btn"
+                            class="px-4 py-2 bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors">
+                        Current Date
+                    </button>
                 </div>
-            </div>
-       
-      <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg">
-                <h3 class="text-purple-700 dark:text-purple-300 font-medium mb-2">
-                    <i class="fas fa-clock mr-2"></i>Pay Day Countdown
-                </h3>
-                <div class="text-sm text-gray-700 dark:text-gray-300">
-           
-          <p class="mb-1">
-                        <i class="fas fa-calendar-dollar mr-2"></i>
-                        Pay Date: <span id="pay-date">N/A</span>
-                    </p>
+    
+           </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <div class="bg-blue-50 dark:bg-blue-900/40 p-4 rounded-lg">
+                    <h3 class="text-blue-700 dark:text-blue-300 font-medium mb-2">
+                        <i class="fas fa-clock mr-2"></i>Average Call Duration
                 
-     <p>
-                        <i class="fas fa-clock mr-2"></i>
-                        Days to Pay: <span id="days-until-pay">N/A</span>
+         </h3>
+                    <p id="avg-duration" class="text-2xl font-bold text-blue-800 dark:text-blue-200">00:00:00</p>
+                </div>
+                <div class="bg-green-50 dark:bg-green-900/40 p-4 rounded-lg">
+                    <h3 class="text-green-700 dark:text-green-300 font-medium mb-2">
+                        <i class="fas fa-bullseye mr-2"></i>Goal Progress
+       
+                  </h3>
+                    <p id="goal-estimate" class="text-2xl font-bold text-green-800 dark:text-green-200">-- mins to goal</p>
+                </div>
+                <div class="bg-yellow-50 dark:bg-yellow-900/40 p-4 rounded-lg">
+                    <h3 class="text-yellow-700 dark:text-yellow-300 font-medium mb-2">
+                   
+          <i class="fas fa-chart-line mr-2"></i>Today's Earnings
+                    </h3>
+                    <p id="today-earnings" class="text-2xl font-bold text-yellow-800 dark:text-yellow-200">$0.00</p>
+                </div>
+            </div>
+    
+            <div id="monthly-earnings-cards" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg">
+         
+                <h3 class="text-purple-700 dark:text-purple-300 font-medium mb-2">
+                        <i class="fas fa-calendar-alt mr-2"></i>First Half of Month
+                    </h3>
+                    <p class="text-lg text-purple-800 dark:text-purple-200 font-bold">
+                        <span id="first-half-earnings">$0.00</span>
+      
+                   </p>
+                </div>
+                <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg">
+                    <h3 class="text-purple-700 dark:text-purple-300 font-medium mb-2">
+                        <i class="fas fa-calendar-alt mr-2"></i>Second Half of Month
+                
+         </h3>
+                    <p class="text-lg text-purple-800 dark:text-purple-200 font-bold">
+                        <span id="second-half-earnings">$0.00</span>
                     </p>
                 </div>
-     
-        </div>
+                <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg">
+               
+          <h3 class="text-purple-700 dark:text-purple-300 font-medium mb-2">
+                        <i class="fas fa-dollar-sign mr-2"></i>Total in Current Month
+                    </h3>
+                    <p class="text-lg text-purple-800 dark:text-purple-200 font-bold">
+                        <span id="monthly-total-earnings">$0.00</span>
+            
+             </p>
+                </div>
+            </div>
+    
+            <div id="payment-cycle-earnings-cards" class="grid grid-cols-1 md:grid-cols-3 gap-4 hidden">
+                <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg">
+                    <h3 class="text-purple-700 dark:text-purple-300 font-medium mb-2">
+                        <i class="fas 
+ fa-money-bill-wave mr-2"></i>Current Cycle Earnings
+                    </h3>
+                    <p id="cycle-earnings" class="text-2xl font-bold text-purple-800 dark:text-purple-200">
+                        $0.00
+                    </p>
+                </div>
+                
+     <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg">
+                    <h3 class="text-purple-700 dark:text-purple-300 font-medium mb-2">
+                        <i class="fas fa-calendar-check mr-2"></i>Cycle Progress
+                    </h3>
+                    <div class="text-sm text-gray-700 dark:text-gray-300">
+                     
+        <p class="mb-1">
+                            <i class="fas fa-calendar-day mr-2"></i>
+                            Start: <span id="cycle-start-date">N/A</span>
+                        </p>
+                        <p class="mb-1">
+      
+                           <i class="fas fa-calendar-day mr-2"></i>
+                            End: <span id="cycle-end-date">N/A</span>
+                        </p>
+                        <p>
+             
+                    <i class="fas fa-calendar-check mr-2"></i>
+                            Days Left: <span id="days-until-end">N/A</span>
+                        </p>
+                    </div>
+                </div>
+           
+          <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg">
+                    <h3 class="text-purple-700 dark:text-purple-300 font-medium mb-2">
+                        <i class="fas fa-clock mr-2"></i>Pay Day Countdown
+                    </h3>
+                    <div class="text-sm text-gray-700 dark:text-gray-300">
+               
+              <p class="mb-1">
+                            <i class="fas fa-calendar-dollar mr-2"></i>
+                            Pay Date: <span id="pay-date">N/A</span>
+                        </p>
+                    
+         <p>
+                            <i class="fas fa-clock mr-2"></i>
+                            Days to Pay: <span id="days-until-pay">N/A</span>
+                        </p>
+                    </div>
+         
+            </div>
+            </div>
         </div>
     </div>
-</div>
-
-<div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-8 sortable-card">
-    <div class="p-6">
-        <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
-            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">
-                <i class="fas fa-history text-blue-500 mr-2"></i>Call Log
-            </h2>
-      
-       <div class="flex flex-wrap items-center gap-4">
-                <div class="flex items-center gap-2">
-                    <span class="text-gray-600 dark:text-gray-400">Total Time:</span>
-                    <span id="total-minutes" class="font-mono text-lg">00:00:00</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <span class="text-gray-600 dark:text-gray-400">Total Earnings:</span>
-                    <span id="total-earnings" class="font-mono text-lg">$0.00</span>
+    
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden sortable-card">
+        <div class="p-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
+                <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+                    <i class="fas fa-history text-blue-500 mr-2"></i>Call Log
+                </h2>
+          
+           <div class="flex flex-wrap items-center gap-4">
+                    <div class="flex items-center gap-2">
+                        <span class="text-gray-600 dark:text-gray-400">Total Time:</span>
+                        <span id="total-minutes" class="font-mono text-lg">00:00:00</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-gray-600 dark:text-gray-400">Total Earnings:</span>
+                        <span id="total-earnings" class="font-mono text-lg">$0.00</span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="overflow-x-auto">
-            <table class="call-log-table w-full">
-                <thead>
-                    <tr class="text-left">
-                        <th class="font-semibold">Date</th>
-                        <th class="font-semibold">Duration</th>
-                        <th class="font-semibold">Rate</th>
-                        <th class="font-semibold">Earned</th>
-                        <th class="font-semibold pl-4">Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="call-log">
-                </tbody>
-                <tfoot>
-                    <tr class="bg-gray-50 dark:bg-gray-800">
-                        <td colspan="5" class="py-4 text-center text-gray-500 dark:text-gray-400">
-                            End of call log
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
+            <div class="overflow-x-auto">
+                <table class="call-log-table w-full">
+                    <thead>
+                        <tr class="text-left">
+                            <th class="font-semibold">Date</th>
+                            <th class="font-semibold">Duration</th>
+                            <th class="font-semibold">Rate</th>
+                            <th class="font-semibold">Earned</th>
+                            <th class="font-semibold pl-4">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="call-log">
+                    </tbody>
+                    <tfoot>
+                        <tr class="bg-gray-50 dark:bg-gray-800">
+                            <td colspan="5" class="py-4 text-center text-gray-500 dark:text-gray-400">
+                                End of call log
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </div>
     </div>
 </div>
