@@ -9,99 +9,99 @@
     <style>
         @keyframes heartbeat {
             0% { transform: scale(1);
-[cite_start][cite: 244] }
+ }
             25% { transform: scale(1.1);
-[cite_start][cite: 245] }
+ }
             40% { transform: scale(1);
-[cite_start][cite: 246] }
+ }
             60% { transform: scale(1.1);
-[cite_start][cite: 247] }
+ }
             100% { transform: scale(1);
-[cite_start][cite: 248] }
+ }
         }
 
         .animate-beat {
             animation: heartbeat 1s infinite;
-[cite_start][cite: 249] display: inline-block;
+ display: inline-block;
         }
 
         .amount-input { width: 100px;
-[cite_start][cite: 250] }
+ }
         .scrollable-table { max-height: 400px; overflow-y: auto;
-[cite_start][cite: 251] }
+ }
         .fade-in-out { animation: fadeInOut 2.5s forwards;
-[cite_start][cite: 252] }
+ }
         @keyframes fadeInOut {
             0% { opacity: 0;
-[cite_start][cite: 253] transform: translateY(-10px);}
+ transform: translateY(-10px);}
             10% { opacity: 1;
-[cite_start][cite: 254] transform: translateY(0);}
+ transform: translateY(0);}
             90% { opacity: 1;}
             100% { opacity: 0;
-[cite_start][cite: 255] transform: translateY(-10px);}
+ transform: translateY(-10px);}
         }
 
         @keyframes gradient {
             0% { background-position: 0% 50%;
-[cite_start][cite: 256] }
+ }
             50% { background-position: 100% 50%;
-[cite_start][cite: 257] }
+ }
             100% { background-position: 0% 50%;
-[cite_start][cite: 258] }
+ }
         }
 
         .animate-gradient {
             background-size: 200% auto;
-[cite_start][cite: 259] animation: gradient 4s linear infinite;
+ animation: gradient 4s linear infinite;
         }
 
         /* Pulse animation for icons */
         @keyframes pulse {
             0%, 100% { opacity: 1;
-[cite_start][cite: 260] }
+ }
             50% { opacity: 0.7;
-[cite_start][cite: 261] }
+ }
         }
 
         .animate-pulse {
             animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-[cite_start][cite: 262] }
+ }
 
         /* Dark Mode Toggle & Date Picker Styles */
         #dark-toggle {
             transform: scale(1);
-[cite_start][cite: 263] transition: all 0.3s ease;
+ transition: all 0.3s ease;
         }
 
         #dark-toggle:hover {
             transform: scale(1.1);
-[cite_start][cite: 264] }
+ }
 
         #dark-toggle i {
             transform: rotate(0deg);
-[cite_start][cite: 265] transition: transform 0.3s ease;
+ transition: transform 0.3s ease;
         }
 
         #dark-toggle:active i {
             transform: rotate(360deg);
-[cite_start][cite: 266] }
+ }
 
         /* Date picker styles - consolidated */
         input[type="date"],
         input[type="time"],
         input[type="datetime-local"] {
             background-color: white !important;
-[cite_start][cite: 267] border: 1px solid #e2e8f0;
+ border: 1px solid #e2e8f0;
             color: #1a202c;
             border-radius: 0.375rem;
             padding: 0.375rem 0.75rem;
-[cite_start][cite: 268] }
+ }
 
         html.dark input[type="date"],
         html.dark input[type="time"],
         html.dark input[type="datetime-local"] {
             background-color: #1e293b !important;
-[cite_start][cite: 269] border-color: #475569;
+ border-color: #475569;
             color: #f1f5f9;
         }
 
@@ -109,7 +109,7 @@
         input[type="time"]::-webkit-calendar-picker-indicator,
         input[type="datetime-local"]::-webkit-calendar-picker-indicator {
             background-color: transparent;
-[cite_start][cite: 270] cursor: pointer;
+ cursor: pointer;
             padding: 0.25rem;
             filter: invert(0.8) brightness(1.2) saturate(0.8);
         }
@@ -118,25 +118,25 @@
         html.dark input[type="time"]::-webkit-calendar-picker-indicator,
         html.dark input[type="datetime-local"]::-webkit-calendar-picker-indicator {
             filter: invert(1) brightness(0.8) saturate(0.8);
-[cite_start][cite: 271] }
+ }
 
         /* Focus states */
         input[type="date"]:focus,
         input[type="time"]:focus,
         input[type="datetime-local"]:focus {
             outline: none;
-[cite_start][cite: 272] border-color: #3b82f6;
+ border-color: #3b82f6;
             box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
-[cite_start][cite: 273] }
+ }
 
         /* Enhanced Dark Mode Styles */
         html.dark {
             color-scheme: dark;
-[cite_start][cite: 274] }
+ }
 
         html.dark body {
             background-color: #0f172a;
-[cite_start][cite: 275] color: #f1f5f9;
+ color: #f1f5f9;
         }
 
         html.dark .card,
@@ -144,14 +144,14 @@
         html.dark #call-modal,
         html.dark #settings-modal {
             background-color: #1e293b;
-[cite_start][cite: 276] border: 1px solid #334155;
+ border: 1px solid #334155;
         }
 
         html.dark input,
         html.dark select,
         html.dark textarea {
             background-color: #334155;
-[cite_start][cite: 277] border-color: #475569;
+ border-color: #475569;
             color: #f1f5f9;
         }
 
@@ -159,22 +159,22 @@
         html.dark #total-minutes,
         html.dark #total-earnings {
             color: #f1f5f9 !important;
-[cite_start][cite: 278] }
+ }
 
         html.dark .bg-gray-50 {
             background-color: #1f2937 !important;
-[cite_start][cite: 279] }
+ }
 
         html.dark tfoot tr {
             background-color: #1f2937 !important;
-[cite_start][cite: 280] color: #f1f5f9 !important;
+ color: #f1f5f9 !important;
         }
 
         /* Edit button visibility fixes */
         .edit-rate-btn,
         .edit-call-btn {
             display: inline-flex !important;
-[cite_start][cite: 281] align-items: center;
+ align-items: center;
             padding: 0.25rem 0.5rem;
             border-radius: 0.25rem;
             background-color: #3b82f6;
@@ -182,259 +182,284 @@
             font-size: 0.75rem;
             font-weight: 600;
             gap: 0.25rem;
-[cite_start][cite: 282] transition: background-color 0.2s;
+ transition: background-color 0.2s;
             margin: 0 0.25rem;
         }
 
         .edit-rate-btn:hover,
         .edit-call-btn:hover {
             background-color: #2563eb;
-[cite_start][cite: 283] }
+ }
 
         /* Improved text contrast in dark mode */
         html.dark .text-gray-900 {
             color: #f1f5f9 !important;
-[cite_start][cite: 284] }
+ }
 
         html.dark .text-gray-800 {
             color: #e2e8f0 !important;
-[cite_start][cite: 285] }
+ }
 
         html.dark .text-gray-700 {
             color: #cbd5e1 !important;
-[cite_start][cite: 286] }
+ }
 
         html.dark .bg-white {
             background-color: #1e293b !important;
-[cite_start][cite: 287] }
+ }
 
         html.dark .border-gray-200 {
             border-color: #334155 !important;
-[cite_start][cite: 288] }
+ }
 
         /* Rates card improvements */
         .rate-edit-form {
             background-color: white;
-[cite_start][cite: 289] padding: 0.5rem;
+ padding: 0.5rem;
             border-radius: 0.75rem;
             margin-bottom: 1rem;
             width: 100%;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-[cite_start][cite: 290] }
+ }
 
         html.dark .rate-edit-form {
             background-color: #1e293b;
-[cite_start][cite: 291] border: 1px solid #475569;
+ border: 1px solid #475569;
         }
 
         .rate-edit-form input {
             width: 100%;
-[cite_start][cite: 292] padding: 0.5rem;
+ padding: 0.5rem;
             margin-bottom: 0.5rem;
             border-radius: 0.25rem;
             border: 1px solid #e2e8f0;
             transition: all 0.2s ease;
-[cite_start][cite: 293] }
+ }
 
         html.dark .rate-edit-form input {
             background-color: #334155;
-[cite_start][cite: 294] border-color: #475569;
+ border-color: #475569;
             color: #f1f5f9;
         }
 
         .rate-edit-form button {
             transition: all 0.2s ease;
-[cite_start][cite: 295] }
+ }
 
         .rates-list-item {
             display: flex;
-[cite_start][cite: 296] align-items: center;
+ align-items: center;
             padding: 0.5rem;
             margin-bottom: 0.5rem;
             background-color: #f8fafc;
             border-radius: 0.375rem;
-[cite_start][cite: 297] }
+ }
 
         html.dark .rates-list-item {
             background-color: #1e293b;
-[cite_start][cite: 298] }
+ }
 
         .call-log-table {
             width: 100%;
-[cite_start][cite: 299] border-collapse: separate;
+ border-collapse: separate;
             border-spacing: 0;
         }
 
         .call-log-table th,
         .call-log-table td {
             padding: 12px;
-[cite_start][cite: 300] text-align: left;
+ text-align: left;
             border-bottom: 1px solid #e2e8f0;
         }
 
         html.dark .call-log-table th,
         html.dark .call-log-table td {
             border-bottom: 1px solid #334155;
-[cite_start][cite: 301] }
+ }
 
         .call-log-table th {
             font-weight: 600;
-[cite_start][cite: 302] background-color: #f8fafc;
+ background-color: #f8fafc;
         }
 
         html.dark .call-log-table th {
             background-color: #1e293b;
-[cite_start][cite: 303] color: #f1f5f9;
+ color: #f1f5f9;
         }
 
         .call-log-table tr:hover {
             background-color: #f1f5f9;
-[cite_start][cite: 304] }
+ }
 
         html.dark .call-log-table tr:hover {
             background-color: #334155;
-[cite_start][cite: 305] }
+ }
 
         .tag {
             display: inline-block;
-[cite_start][cite: 306] padding: 4px 8px;
+ padding: 4px 8px;
             border-radius: 4px;
             background-color: #e2e8f0;
             color: #4a5568;
             font-size: 0.875rem;
-[cite_start][cite: 307] }
+ }
 
         html.dark .tag {
             background-color: #475569;
-[cite_start][cite: 308] color: #f1f5f9;
+ color: #f1f5f9;
         }
 
         /* Modal styles with dark mode */
         #call-modal,
         #settings-modal {
             background-color: white;
-[cite_start][cite: 309] border-radius: 8px;
+ border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             max-width: 500px;
             width: 90%;
-[cite_start][cite: 310] }
+ }
 
         html.dark #call-modal,
         html.dark #settings-modal {
             background-color: #1e293b;
-[cite_start][cite: 311] border-color: #475569;
+ border-color: #475569;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-[cite_start][cite: 312] }
+ }
 
         #call-modal input,
         #call-modal select,
         #settings-modal input,
         #settings-modal select {
             width: 100%;
-[cite_start][cite: 313] padding: 8px;
+ padding: 8px;
             margin: 4px 0 12px;
             border-radius: 4px;
             border: 1px solid #e2e8f0;
-[cite_start][cite: 314] }
+ }
 
         html.dark #call-modal input,
         html.dark #call-modal select,
         html.dark #settings-modal input,
         html.dark #settings-modal select {
             background-color: #334155;
-[cite_start][cite: 315] border-color: #475569;
+ border-color: #475569;
             color: #f1f5f9;
         }
 
         /* Button styles with dark mode */
         .btn-primary {
             background-color: #3b82f6;
-[cite_start][cite: 316] color: white;
+ color: white;
             transition: background-color 0.2s;
         }
 
         .btn-primary:hover {
             background-color: #2563eb;
-[cite_start][cite: 317] }
+ }
 
         html.dark .btn-primary {
             background-color: #3b82f6;
-[cite_start][cite: 318] }
+ }
 
         html.dark .btn-primary:hover {
             background-color: #1d4ed8;
-[cite_start][cite: 319] }
+ }
 
         /* Call log table specific styles */
         .call-log-table td button {
             opacity: 1 !important;
-[cite_start][cite: 320] visibility: visible !important;
+ visibility: visible !important;
         }
 
         /* Make goal save button always visible */
         #goal-form button[type="submit"] {
             display: inline-flex !important;
-[cite_start][cite: 321] opacity: 1 !important;
+ opacity: 1 !important;
             visibility: visible !important;
             background-color: #22c55e;
             color: white;
             padding: 0.375rem 0.75rem;
             border-radius: 0.375rem;
-[cite_start][cite: 322] }
+ }
 
         #goal-form button[type="submit"]:hover {
             background-color: #16a34a;
-[cite_start][cite: 323] }
+ }
 
         /* Style for Add Rate button */
         #show-rate-add {
             background-color: #dbeafe !important;
-[cite_start][cite: 324] color: #2563eb !important;
+ color: #2563eb !important;
             padding: 0.25rem 0.75rem;
             border-radius: 9999px;
             font-size: 0.875rem;
             font-weight: 500;
             transition: all 0.2s;
-[cite_start][cite: 325] }
+ }
 
         #show-rate-add:hover {
             background-color: #bfdbfe !important;
-[cite_start][cite: 326] }
+ }
 
         html.dark #show-rate-add {
             background-color: #1e3a8a !important;
-[cite_start][cite: 327] color: #60a5fa !important;
+ color: #60a5fa !important;
         }
 
         html.dark #show-rate-add:hover {
             background-color: #1e40af !important;
-[cite_start][cite: 328] }
+ }
 
         /* Hidden file input */
         #file-input {
             display: none;
-[cite_start][cite: 329] }
+ }
 
         /* Responsive containers */
         .tracker-container {
             width: 100%;
-[cite_start][cite: 330] max-width: 320px;
+ max-width: 320px;
         }
 
         @media (max-width: 640px) {
             .tracker-container {
                 max-width: 100%;
-[cite_start][cite: 331] }
+ }
 
             .rate-edit-form button {
                 width: 100%;
-[cite_start][cite: 332] margin-bottom: 0.5rem;
+ margin-bottom: 0.5rem;
             }
 
             .rate-edit-form .flex {
                 flex-direction: column;
-[cite_start][cite: 333] }
+ }
         }
+
+        /* New CSS for drag-and-drop */
+        .drag-container {
+            display: grid;
+            gap: 3rem; /* Same as the existing gap-12 but for grid */
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 768px) {
+            .drag-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .sortable-card {
+            cursor: grab;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .sortable-ghost {
+            opacity: 0.5;
+            background-color: #e2e8f0;
+            border: 2px dashed #94a3b8;
+        }
+        
     </style>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors">
@@ -445,7 +470,7 @@
             <i class="fas fa-cog text-gray-600 dark:text-gray-300 transition-transform duration-300"></i>
         </button>
         <button 
-[cite_start][cite: 334] id="dark-toggle" aria-label="Toggle dark mode"
+ id="dark-toggle" aria-label="Toggle dark mode"
             class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 focus:outline-none">
             <i class="fas fa-sun text-yellow-500 hidden dark:block"></i>
             <i class="fas fa-moon text-gray-600 dark:text-gray-300 block dark:hidden"></i>
@@ -455,14 +480,14 @@
     <header class="mb-8 text-center">
         <h1 class="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3 animate-gradient">
   
-[cite_start][cite: 335]           Work Time Tracker
+           Work Time Tracker
         </h1>
         <p class="text-lg md:text-xl text-gray-700 dark:text-gray-300 font-light tracking-wide mb-2">
             <span class="inline-block">
                 <i class="fas fa-clock text-blue-500 dark:text-blue-400 mr-2 animate-pulse"></i>
                 Track Your Time
             
-[cite_start][cite: 336] </span>
+ </span>
             <span class="mx-2">•</span>
             <span class="inline-block">
                 <i class="fas fa-chart-line text-purple-500 dark:text-purple-400 mr-2 animate-pulse"></i>
@@ -470,17 +495,17 @@
             </span>
         </p>
         <p class="text-md md:text-lg font-semibold text-gray-800 dark:text-gray-200 bg-gradient-to-r 
-[cite_start][cite: 337] from-blue-100 to-purple-100 dark:from-gray-900 dark:to-black py-1 px-3 rounded-full inline-block shadow-sm">
+ from-blue-100 to-purple-100 dark:from-gray-900 dark:to-black py-1 px-3 rounded-full inline-block shadow-sm">
             By Interpreters for Interpreters
         </p>
     </header>
 
-<div class="flex flex-col md:flex-row items-start justify-center gap-12 mb-8">
-    <div class="tracker-container dark:bg-gray-800 rounded-xl shadow p-6 flex flex-col items-center w-full">
+<div id="drag-container" class="drag-container mb-8">
+    <div class="tracker-container dark:bg-gray-800 rounded-xl shadow p-6 flex flex-col items-center w-full sortable-card">
         <div class="flex flex-col items-center mb-2">
             <div class="bg-blue-100 dark:bg-blue-950 rounded-full w-16 h-16 flex items-center justify-center mb-3">
             
-[cite_start][cite: 338]     <i class="fas fa-phone-volume text-3xl text-primary dark:text-blue-300"></i>
+     <i class="fas fa-phone-volume text-3xl text-primary dark:text-blue-300"></i>
             </div>
             <h2 class="text-lg font-semibold mb-2 text-dark dark:text-gray-200">Call Controls</h2>
         </div>
@@ -491,35 +516,35 @@
     </select>
 </div>
    
-[cite_start][cite: 339]      <div class="flex flex-col gap-2 w-full">
+      <div class="flex flex-col gap-2 w-full">
             <button id="add-call-btn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 dark:bg-blue-500 dark:hover:bg-blue-600 transition w-full flex items-center justify-center gap-2">
                 <i class="fas fa-plus"></i> Add Call
             </button>
             <button id="start-call-btn" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 dark:hover:bg-green-800 transition w-full flex items-center justify-center gap-2">
       
-[cite_start][cite: 340]           <i class="fas fa-play"></i> Start Call
+           <i class="fas fa-play"></i> Start Call
             </button>
             <button id="end-call-btn" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 dark:hover:bg-red-800 transition w-full flex items-center justify-center gap-2">
                 <i class="fas fa-stop"></i> End Call
             </button>
         </div>
         
-[cite_start][cite: 341] <div id="live-call-info" class="mt-4 w-full" style="display:none;">
+ <div id="live-call-info" class="mt-4 w-full" style="display:none;">
             <div class="flex flex-col items-center bg-green-50 dark:bg-green-900 rounded-lg p-3 shadow-inner">
                 <span class="text-green-700 dark:text-green-300 font-semibold text-sm mb-1">Ongoing Call</span>
                 <span id="live-call-timer" class="font-mono text-xl text-green-900 dark:text-green-200 mb-1">00:00:00</span>
                 <span id="live-call-earnings" class="font-mono text-lg text-green-800 dark:text-green-100">$0.00 earned</span>
           
-[cite_start][cite: 342]   </div>
+   </div>
         </div>
     </div>
 
-    <div class="flex flex-col w-full tracker-container">
+    <div class="flex flex-col w-full tracker-container sortable-card">
         <div class="dark:bg-gray-800 rounded-xl shadow p-6 w-full mb-6">
             <div class="flex flex-col items-center mb-4">
                 <div class="bg-purple-100 dark:bg-purple-950 rounded-full w-16 h-16 flex items-center justify-center mb-3">
                     <i class="fas fa-dollar-sign 
-[cite_start][cite: 343] text-3xl text-purple-500 dark:text-purple-300"></i>
+ text-3xl text-purple-500 dark:text-purple-300"></i>
                 </div>
                 <h2 class="text-lg font-semibold text-dark dark:text-gray-200">Rates</h2>
             </div>
@@ -527,29 +552,29 @@
             </div>
             <button id="show-rate-add" class="w-full flex items-center justify-center gap-2 py-1">
      
-[cite_start][cite: 344]            <i class="fas fa-plus"></i> Add Rate
+            <i class="fas fa-plus"></i> Add Rate
             </button>
             <form id="rate-form" class="rate-edit-form" style="display: none;">
                 <input type="text" id="rate-name" placeholder="Rate Name" maxlength="50"
                     class="w-full mb-2 px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
          
-[cite_start][cite: 345]        <div class="flex items-center mb-2">
+        <div class="flex items-center mb-2">
                     <span class="text-gray-600 dark:text-gray-300 mr-2">$</span>
                     <input type="number" id="rate-amount" placeholder="Amount" step="0.01" min="0.01" max="999999"
                         class="flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
            
-[cite_start][cite: 346]          <span class="text-gray-600 dark:text-gray-300 ml-2">/min</span>
+          <span class="text-gray-600 dark:text-gray-300 ml-2">/min</span>
                 </div>
                 <div class="flex gap-2">
                     <button type="submit"
                         class="flex-1 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">
   
-[cite_start][cite: 347]                       Save
+                       Save
                     </button>
                     <button type="button" id="cancel-rate-add"
                         class="flex-1 bg-gray-300 dark:bg-gray-600 text-gray-700 dark:text-gray-200 px-4 py-2 rounded hover:bg-gray-400 dark:hover:bg-gray-700 transition">
   
-[cite_start][cite: 348]                       Cancel
+                       Cancel
                     </button>
                 </div>
             </form>
@@ -557,99 +582,99 @@
 
         <div class="dark:bg-gray-800 rounded-xl shadow p-6 w-full">
          
-[cite_start][cite: 349]    <div class="flex flex-col items-center mb-4">
+    <div class="flex flex-col items-center mb-4">
                 <div class="bg-green-100 dark:bg-green-950 rounded-full w-16 h-16 flex items-center justify-center mb-3">
                     <i class="fas fa-bullseye text-3xl text-green-500 dark:text-green-300"></i>
                 </div>
                 <h2 class="text-lg font-semibold text-dark dark:text-gray-200">Daily Goal</h2>
       
-[cite_start][cite: 350]       </div>
+       </div>
             <form id="goal-form" class="flex items-center gap-2">
                 <div class="flex-1">
                     <div class="flex items-center">
                         <span class="text-gray-600 dark:text-gray-300 mr-2">$</span>
             
-[cite_start][cite: 351]             <input type="number" id="goal-amount" placeholder="Amount" step="0.01" min="0" max="999999"
+             <input type="number" id="goal-amount" placeholder="Amount" step="0.01" min="0" max="999999"
                             class="flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
                     </div>
                 </div>
             
-[cite_start][cite: 352]     <button type="submit" class="px-4 py-2 rounded transition-colors duration-200">
+     <button type="submit" class="px-4 py-2 rounded transition-colors duration-200">
                     <i class="fas fa-save"></i>
                 </button>
             </form>
             <div class="mt-4">
                 <div class="relative pt-1">
          
-[cite_start][cite: 353]            <div class="flex mb-2 items-center justify-between">
+            <div class="flex mb-2 items-center justify-between">
                         <div>
                             <span id="goal-progress-text"
                                 
-[cite_start][cite: 354] class="text-xs font-semibold inline-block text-green-600 dark:text-green-400">
+ class="text-xs font-semibold inline-block text-green-600 dark:text-green-400">
                                 0%
                             </span>
                         </div>
             
-[cite_start][cite: 355]             <div class="text-right">
+             <div class="text-right">
                             <span id="goal-amount-display"
                                 class="text-xs font-semibold inline-block text-green-600 dark:text-green-400">
                       
-[cite_start][cite: 356]           $0 / $0
+           $0 / $0
                             </span>
                         </div>
                     </div>
                 
-[cite_start][cite: 357]     <div class="flex h-2 mb-4 overflow-hidden bg-green-200 rounded dark:bg-green-900">
+     <div class="flex h-2 mb-4 overflow-hidden bg-green-200 rounded dark:bg-green-900">
                         <div id="goal-progress-bar"
                             class="flex flex-col justify-center overflow-hidden bg-green-500"
                             role="progressbar" style="width: 0%"></div>
   
-[cite_start][cite: 358]                   </div>
+                   </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-8">
+<div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-8 sortable-card">
     <div class="p-6">
         <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
             <i class="fas fa-chart-bar text-purple-500 mr-2"></i>Call Statistics
  
-[cite_start][cite: 359]        </h2>
+        </h2>
         <div class="flex justify-between items-center mb-6">
             <div class="flex items-center gap-4">
                 <input type="date" id="stats-date-picker"
                        class="px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
                 />
  
-[cite_start][cite: 360]                <button id="current-date-btn"
+                <button id="current-date-btn"
                         class="px-4 py-2 bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors">
                     Current Date
                 </button>
             </div>
   
-[cite_start][cite: 361]       </div>
+       </div>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <div class="bg-blue-50 dark:bg-blue-900/40 p-4 rounded-lg">
                 <h3 class="text-blue-700 dark:text-blue-300 font-medium mb-2">
                     <i class="fas fa-clock mr-2"></i>Average Call Duration
             
-[cite_start][cite: 362]     </h3>
+     </h3>
                 <p id="avg-duration" class="text-2xl font-bold text-blue-800 dark:text-blue-200">00:00:00</p>
             </div>
             <div class="bg-green-50 dark:bg-green-900/40 p-4 rounded-lg">
                 <h3 class="text-green-700 dark:text-green-300 font-medium mb-2">
                     <i class="fas fa-bullseye mr-2"></i>Goal Progress
    
-[cite_start][cite: 363]              </h3>
+              </h3>
                 <p id="goal-estimate" class="text-2xl font-bold text-green-800 dark:text-green-200">-- mins to goal</p>
             </div>
             <div class="bg-yellow-50 dark:bg-yellow-900/40 p-4 rounded-lg">
                 <h3 class="text-yellow-700 dark:text-yellow-300 font-medium mb-2">
                
-[cite_start][cite: 364]      <i class="fas fa-chart-line mr-2"></i>Today's Earnings
+      <i class="fas fa-chart-line mr-2"></i>Today's Earnings
                 </h3>
                 <p id="today-earnings" class="text-2xl font-bold text-yellow-800 dark:text-yellow-200">$0.00</p>
             </div>
@@ -658,32 +683,32 @@
         <div id="monthly-earnings-cards" class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg">
      
-[cite_start][cite: 365]            <h3 class="text-purple-700 dark:text-purple-300 font-medium mb-2">
+            <h3 class="text-purple-700 dark:text-purple-300 font-medium mb-2">
                     <i class="fas fa-calendar-alt mr-2"></i>First Half of Month
                 </h3>
                 <p class="text-lg text-purple-800 dark:text-purple-200 font-bold">
                     <span id="first-half-earnings">$0.00</span>
   
-[cite_start][cite: 366]               </p>
+               </p>
             </div>
             <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg">
                 <h3 class="text-purple-700 dark:text-purple-300 font-medium mb-2">
                     <i class="fas fa-calendar-alt mr-2"></i>Second Half of Month
             
-[cite_start][cite: 367]     </h3>
+     </h3>
                 <p class="text-lg text-purple-800 dark:text-purple-200 font-bold">
                     <span id="second-half-earnings">$0.00</span>
                 </p>
             </div>
             <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg">
            
-[cite_start][cite: 368]      <h3 class="text-purple-700 dark:text-purple-300 font-medium mb-2">
+      <h3 class="text-purple-700 dark:text-purple-300 font-medium mb-2">
                     <i class="fas fa-dollar-sign mr-2"></i>Total in Current Month
                 </h3>
                 <p class="text-lg text-purple-800 dark:text-purple-200 font-bold">
                     <span id="monthly-total-earnings">$0.00</span>
         
-[cite_start][cite: 369]         </p>
+         </p>
             </div>
         </div>
 
@@ -691,66 +716,66 @@
             <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg">
                 <h3 class="text-purple-700 dark:text-purple-300 font-medium mb-2">
                     <i class="fas 
-[cite_start][cite: 370] fa-money-bill-wave mr-2"></i>Current Cycle Earnings
+ fa-money-bill-wave mr-2"></i>Current Cycle Earnings
                 </h3>
                 <p id="cycle-earnings" class="text-2xl font-bold text-purple-800 dark:text-purple-200">
                     $0.00
                 </p>
             </div>
             
-[cite_start][cite: 371] <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg">
+ <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg">
                 <h3 class="text-purple-700 dark:text-purple-300 font-medium mb-2">
                     <i class="fas fa-calendar-check mr-2"></i>Cycle Progress
                 </h3>
                 <div class="text-sm text-gray-700 dark:text-gray-300">
                  
-[cite_start][cite: 372]    <p class="mb-1">
+    <p class="mb-1">
                         <i class="fas fa-calendar-day mr-2"></i>
                         Start: <span id="cycle-start-date">N/A</span>
                     </p>
                     <p class="mb-1">
   
-[cite_start][cite: 373]                       <i class="fas fa-calendar-day mr-2"></i>
+                       <i class="fas fa-calendar-day mr-2"></i>
                         End: <span id="cycle-end-date">N/A</span>
                     </p>
                     <p>
          
-[cite_start][cite: 374]                <i class="fas fa-calendar-check mr-2"></i>
+                <i class="fas fa-calendar-check mr-2"></i>
                         Days Left: <span id="days-until-end">N/A</span>
                     </p>
                 </div>
             </div>
        
-[cite_start][cite: 375]      <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg">
+      <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg">
                 <h3 class="text-purple-700 dark:text-purple-300 font-medium mb-2">
                     <i class="fas fa-clock mr-2"></i>Pay Day Countdown
                 </h3>
                 <div class="text-sm text-gray-700 dark:text-gray-300">
            
-[cite_start][cite: 376]          <p class="mb-1">
+          <p class="mb-1">
                         <i class="fas fa-calendar-dollar mr-2"></i>
                         Pay Date: <span id="pay-date">N/A</span>
                     </p>
                 
-[cite_start][cite: 377]     <p>
+     <p>
                         <i class="fas fa-clock mr-2"></i>
                         Days to Pay: <span id="days-until-pay">N/A</span>
                     </p>
                 </div>
      
-[cite_start][cite: 378]        </div>
+        </div>
         </div>
     </div>
 </div>
 
-<div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-8">
+<div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-8 sortable-card">
     <div class="p-6">
         <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
             <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">
                 <i class="fas fa-history text-blue-500 mr-2"></i>Call Log
             </h2>
       
-[cite_start][cite: 379]       <div class="flex flex-wrap items-center gap-4">
+       <div class="flex flex-wrap items-center gap-4">
                 <div class="flex items-center gap-2">
                     <span class="text-gray-600 dark:text-gray-400">Total Time:</span>
                     <span id="total-minutes" class="font-mono text-lg">00:00:00</span>
@@ -787,7 +812,7 @@
 </div>
 
 <div id="call-modal" style="display: none;"
-[cite_start][cite: 380] role="dialog" aria-labelledby="modal-title" aria-modal="true" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+ role="dialog" aria-labelledby="modal-title" aria-modal="true" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
     <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-md">
         <div class="flex justify-between items-center mb-4">
             <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100" id="modal-title">Add Call</h3>
@@ -806,7 +831,7 @@
                 <div class="flex gap-2">
                     <input type="number" id="call-duration-hours" min="0" max="24" placeholder="HH" aria-label="Hours"
                         class="w-full px-3 py-2 border rounded-lg 
-[cite_start][cite: 381] focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
+ focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
                     <input type="number" id="call-duration-minutes" min="0" max="59" placeholder="MM" aria-label="Minutes"
                         class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
                     <input type="number" id="call-duration-seconds" min="0" max="59" placeholder="SS" aria-label="Seconds"
@@ -832,7 +857,7 @@
     </div>
 </div>
 <div id="settings-modal" style="display: 
-[cite_start][cite: 382] none;" role="dialog" aria-labelledby="settings-modal-title" aria-modal="true" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+ none;" role="dialog" aria-labelledby="settings-modal-title" aria-modal="true" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
     <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-md">
         <div class="flex justify-between items-center mb-4">
             <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100" id="settings-modal-title">Settings</h3>
@@ -850,7 +875,7 @@
                     <label for="import-file" class="flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors cursor-pointer">
                         <i class="fas fa-upload"></i> Import Data
                     </label>
-[cite_start][cite: 383]                     <input type="file" id="import-file" accept=".json" class="hidden">
+                     <input type="file" id="import-file" accept=".json" class="hidden">
                 </div>
             </div>
             <div class="border-b border-gray-200 dark:border-gray-700 pb-4">
@@ -872,7 +897,7 @@
                         <input type="checkbox" id="payment-cycles-toggle" class="sr-only peer">
                         <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                         <span 
-[cite_start][cite: 384] class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Enable Payment Cycles</span>
+ class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Enable Payment Cycles</span>
                     </label>
                 </div>
                 <div id="payment-cycles-config" class="hidden">
@@ -915,6 +940,7 @@
 </footer>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
 <script>
     // Global Constants
     const STORAGE_KEY = 'workTimeTrackerData';
@@ -1717,6 +1743,19 @@
         updateStatistics();
         updateStorageInfo();
         renderPaymentCycles();
+
+        // New - Initialize SortableJS
+        const dragContainer = document.getElementById('drag-container');
+        const sortable = new Sortable(dragContainer, {
+            animation: 150, // Animation speed
+            ghostClass: 'sortable-ghost', // Class for the drag ghost element
+            onEnd: function (evt) {
+                // When a drag and drop operation ends, you could save the new order
+                // to local storage if you want it to persist.
+                console.log('New order:', sortable.toArray());
+                // Example: localStorage.setItem('cardOrder', JSON.stringify(sortable.toArray()));
+            }
+        });
     });
 </script>
 </body>
