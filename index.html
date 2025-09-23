@@ -10,6 +10,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Drag and Drop Styles */
+        .draggable-card {
+            cursor: grab;
+            user-select: none;
+            touch-action: none;
+            transition: transform 0.1s ease, box-shadow 0.2s ease;
+        }
+        .draggable-card.dragging {
+            cursor: grabbing;
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+        .draggable-card.placeholder {
+            opacity: 0.5;
+            background: #f0f0f0;
+            border: 2px dashed #ccc;
+        }
+        html.dark .draggable-card.placeholder {
+            background: #2d3748;
+            border-color: #4a5568;
+        }
+
         @keyframes heartbeat {
             0% { transform: scale(1); }
             25% { transform: scale(1.1); }
@@ -527,8 +550,8 @@
         </p>
     </header>
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-    <div class="dark:bg-gray-800 rounded-xl shadow-lg p-6 w-full">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8" id="dashboard-grid">
+    <div class="dark:bg-gray-800 rounded-xl shadow-lg p-6 w-full draggable-card" draggable="true" data-card-id="call-controls">
         <div class="flex flex-col items-center mb-4">
             <div class="bg-blue-100 dark:bg-blue-950 rounded-full w-16 h-16 flex items-center justify-center mb-3">
                 <i class="fas fa-phone-volume text-3xl text-primary dark:text-blue-300"></i>
@@ -561,8 +584,8 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 gap-8">
-        <div class="dark:bg-gray-800 rounded-xl shadow-lg p-6 w-full">
+    <div class="grid grid-cols-1 gap-8" id="right-column">
+        <div class="dark:bg-gray-800 rounded-xl shadow-lg p-6 w-full draggable-card" draggable="true" data-card-id="rates">
             <div class="flex flex-col items-center mb-4">
                 <div class="bg-purple-100 dark:bg-purple-950 rounded-full w-16 h-16 flex items-center justify-center mb-3">
                     <i class="fas fa-dollar-sign text-3xl text-purple-500 dark:text-purple-300"></i>
@@ -596,7 +619,7 @@
             </form>
         </div>
 
-        <div class="dark:bg-gray-800 rounded-xl shadow-lg p-6 w-full">
+        <div class="dark:bg-gray-800 rounded-xl shadow-lg p-6 w-full draggable-card" draggable="true" data-card-id="daily-goal">
             <div class="flex flex-col items-center mb-4">
                 <div class="bg-green-100 dark:bg-green-950 rounded-full w-16 h-16 flex items-center justify-center mb-3">
                     <i class="fas fa-bullseye text-3xl text-green-500 dark:text-green-300"></i>
@@ -665,13 +688,13 @@
             </h3>
             <p id="avg-duration" class="text-2xl font-bold text-blue-800 dark:text-blue-200">00:00:00</p>
         </div>
-        <div class="bg-green-50 dark:bg-green-900/40 p-4 rounded-lg">
+        <div class="bg-green-50 dark:bg-green-900/40 p-4 rounded-lg draggable-card" draggable="true" data-card-id="goal-progress">
             <h3 class="text-green-700 dark:text-green-300 font-medium mb-2 text-xl">
                 <i class="fas fa-bullseye mr-2"></i>Goal Progress
             </h3>
             <p id="goal-estimate" class="text-2xl font-bold text-green-800 dark:text-green-200">-- mins to goal</p>
         </div>
-        <div class="bg-yellow-50 dark:bg-yellow-900/40 p-4 rounded-lg">
+        <div class="bg-yellow-50 dark:bg-yellow-900/40 p-4 rounded-lg draggable-card" draggable="true" data-card-id="today-earnings">
             <h3 class="text-yellow-700 dark:text-yellow-300 font-medium mb-2 text-xl">
                 <i class="fas fa-chart-line mr-2"></i>Today's Earnings
             </h3>
@@ -680,7 +703,7 @@
     </div>
 
     <div id="monthly-earnings-cards" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg">
+        <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg draggable-card" draggable="true" data-card-id="second-half-earnings">
             <h3 class="text-purple-700 dark:text-purple-300 font-medium mb-2 text-xl">
                 <i class="fas fa-calendar-alt mr-2"></i>First Half of Month
             </h3>
@@ -688,7 +711,7 @@
                 <span id="first-half-earnings">$0.00</span>
             </p>
         </div>
-        <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg">
+        <div class="bg-purple-50 dark:bg-purple-900/40 p-4 rounded-lg draggable-card" draggable="true" data-card-id="monthly-total-earnings">
             <h3 class="text-purple-700 dark:text-purple-300 font-medium mb-2 text-xl">
                 <i class="fas fa-calendar-alt mr-2"></i>Second Half of Month
             </h3>
@@ -978,6 +1001,150 @@
 </footer>
 
 <script>
+    // Drag and Drop Functions
+    function setupDragAndDrop() {
+        const cards = document.querySelectorAll('.draggable-card');
+        let draggedCard = null;
+        let placeholder = null;
+
+        cards.forEach(card => {
+            card.addEventListener('dragstart', (e) => {
+                draggedCard = card;
+                card.classList.add('dragging');
+                e.dataTransfer.setData('text/plain', card.dataset.cardId);
+                e.dataTransfer.effectAllowed = 'move';
+                
+                // Create a placeholder
+                placeholder = document.createElement('div');
+                placeholder.className = 'draggable-card placeholder';
+                placeholder.style.height = `${card.offsetHeight}px`;
+                placeholder.style.width = `${card.offsetWidth}px`;
+            });
+
+            card.addEventListener('dragend', () => {
+                card.classList.remove('dragging');
+                if (placeholder && placeholder.parentNode) {
+                    placeholder.parentNode.removeChild(placeholder);
+                }
+                draggedCard = null;
+                placeholder = null;
+                saveCardPositions();
+            });
+
+            card.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                e.dataTransfer.dropEffect = 'move';
+                
+                if (!draggedCard || card === draggedCard) return;
+                
+                const rect = card.getBoundingClientRect();
+                const midY = rect.top + rect.height / 2;
+                
+                if (e.clientY < midY) {
+                    card.parentNode.insertBefore(placeholder, card);
+                } else {
+                    card.parentNode.insertBefore(placeholder, card.nextSibling);
+                }
+            });
+
+            card.addEventListener('drop', (e) => {
+                e.preventDefault();
+                if (!draggedCard || card === draggedCard) return;
+                
+                const rect = card.getBoundingClientRect();
+                const midY = rect.top + rect.height / 2;
+                
+                if (e.clientY < midY) {
+                    card.parentNode.insertBefore(draggedCard, card);
+                } else {
+                    card.parentNode.insertBefore(draggedCard, card.nextSibling);
+                }
+            });
+        });
+
+        // Make grid containers droppable
+        const grids = document.querySelectorAll('#dashboard-grid, #right-column, #stats-cards, #monthly-earnings-cards');
+        grids.forEach(grid => {
+            grid.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                e.dataTransfer.dropEffect = 'move';
+                
+                if (!draggedCard) return;
+                
+                // If grid is empty or we're at the end, append
+                if (grid.children.length === 0 || 
+                    e.clientY > grid.lastElementChild.getBoundingClientRect().bottom) {
+                    grid.appendChild(placeholder);
+                }
+            });
+
+            grid.addEventListener('drop', (e) => {
+                e.preventDefault();
+                if (!draggedCard) return;
+                
+                // If grid is empty or we're at the end, append
+                if (grid.children.length === 0 || 
+                    e.clientY > grid.lastElementChild.getBoundingClientRect().bottom) {
+                    grid.appendChild(draggedCard);
+                }
+            });
+        });
+    }
+
+    function saveCardPositions() {
+        const positions = {
+            dashboard: Array.from(document.querySelectorAll('#dashboard-grid > .draggable-card')).map(card => card.dataset.cardId),
+            rightColumn: Array.from(document.querySelectorAll('#right-column > .draggable-card')).map(card => card.dataset.cardId),
+            stats: Array.from(document.querySelectorAll('#stats-cards > .draggable-card')).map(card => card.dataset.cardId),
+            monthly: Array.from(document.querySelectorAll('#monthly-earnings-cards > .draggable-card')).map(card => card.dataset.cardId)
+        };
+        localStorage.setItem('cardPositions', JSON.stringify(positions));
+    }
+
+    function loadCardPositions() {
+        const savedPositions = localStorage.getItem('cardPositions');
+        if (!savedPositions) return;
+
+        try {
+            const positions = JSON.parse(savedPositions);
+            const allCards = document.querySelectorAll('.draggable-card');
+            const cardMap = {};
+            
+            allCards.forEach(card => {
+                cardMap[card.dataset.cardId] = card;
+                card.remove();
+            });
+
+            // Reinsert cards in saved order
+            positions.dashboard.forEach(id => {
+                if (cardMap[id]) {
+                    document.getElementById('dashboard-grid').appendChild(cardMap[id]);
+                }
+            });
+
+            positions.rightColumn.forEach(id => {
+                if (cardMap[id]) {
+                    document.getElementById('right-column').appendChild(cardMap[id]);
+                }
+            });
+
+            positions.stats.forEach(id => {
+                if (cardMap[id]) {
+                    document.getElementById('stats-cards').appendChild(cardMap[id]);
+                }
+            });
+
+            positions.monthly.forEach(id => {
+                if (cardMap[id]) {
+                    document.getElementById('monthly-earnings-cards').appendChild(cardMap[id]);
+                }
+            });
+
+        } catch (e) {
+            console.error('Failed to load card positions:', e);
+        }
+    }
+
     // Global variables
     const startCallBtn = document.getElementById('start-call-btn');
     const endCallBtn = document.getElementById('end-call-btn');
@@ -1950,6 +2117,8 @@
         });
         
         // Initialize displays and add event listeners
+        loadCardPositions();
+        setupDragAndDrop();
         displayRates();
         populateRateSelects(); // Call before setting the value
         if (rates.length > 0 && lastSelectedRate) {
