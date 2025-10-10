@@ -862,15 +862,7 @@
                 <i class="fas fa-times"></i>
             </button>
         </div>
-        <div class="border-b border-gray-200 dark:border-gray-700 pb-4">
-    <h4 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-3">Time Zone Settings</h4>
-    <div class="mb-4">
-        <label for="timezone-select" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Select Your Time Zone</label>
-        <select id="timezone-select" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
-        </select>
-    </div>
-</div>
-        <div class="space-y-4">
+               <div class="space-y-4">
             <div class="border-b border-gray-200 dark:border-gray-700 pb-4">
                 <h4 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-3">Data Management</h4>
                 <div class="flex flex-col gap-2">
@@ -1306,6 +1298,22 @@
     }
     
     function updateLocalTime() {
+    const now = new Date();
+    const timeZoneDate = new Date(now.toLocaleString('en-US', { timeZone: userTimezone }));
+    const dateString = timeZoneDate.toLocaleDateString(undefined, { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    });
+    const timeString = timeZoneDate.toLocaleTimeString(undefined, { 
+        hour: '2-digit', 
+        minute: '2-digit', 
+        second: '2-digit' 
+    });
+    localTimeDisplay.textContent = `${dateString}, ${timeString}`;
+    userTimeZoneDisplay.textContent = userTimezone.replace(/_/g, ' ');
+}
     // Create a new date object for current time
     const now = new Date();
     
@@ -1916,11 +1924,11 @@
     document.addEventListener('DOMContentLoaded', () => {
         // Populate timezone select
     function populateTimezones() {
-        const timeZones = Intl.supportedValuesOf('timeZone');
-        timezoneSelect.innerHTML = timeZones.map(zone => 
-            `<option value="${zone}" ${zone === userTimezone ? 'selected' : ''}>${zone.replace(/_/g, ' ')}</option>`
-        ).join('');
-    }
+    const timeZones = Intl.supportedValuesOf('timeZone');
+    timezoneSelect.innerHTML = timeZones.map(zone => 
+        `<option value="${zone}" ${zone === userTimezone ? 'selected' : ''}>${zone.replace(/_/g, ' ')}</option>`
+    ).join('');
+}
         // Tracker buttons
         startCallBtn.addEventListener('click', startLiveCall);
         endCallBtn.addEventListener('click', endLiveCall);
