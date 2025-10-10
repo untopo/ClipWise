@@ -876,6 +876,14 @@
                 </div>
             </div>
             <div class="border-b border-gray-200 dark:border-gray-700 pb-4">
+    <h4 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-3">Time Zone Settings</h4>
+    <div class="mb-4">
+        <label for="timezone-select" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Select Your Time Zone</label>
+        <select id="timezone-select" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
+        </select>
+    </div>
+</div>
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-4">
                 <h4 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-3">Storage</h4>
                 <div class="mb-2">
                     <div class="flex justify-between text-sm text-gray-600 dark:text-gray-400 mb-1">
@@ -1217,6 +1225,9 @@
     const filterTodayBtn = document.getElementById('filter-today');
     const filterWeekBtn = document.getElementById('filter-week');
     const filterMonthBtn = document.getElementById('filter-month');
+
+    const timezoneSelect = document.getElementById('timezone-select');
+    let userTimezone = localStorage.getItem('userTimezone') || Intl.DateTimeFormat().resolvedOptions().timeZone;
     
     // Bug Fix: Add try-catch for local storage parsing to prevent app crash on corrupted data
     let rates, calls, dailyGoal, paymentCyclesEnabled, paymentCycles, lastSelectedRate;
@@ -1268,21 +1279,51 @@
     }
 
     function formatDateTime(date) {
-        const d = new Date(date);
-        return `${d.toLocaleDateString()} ${d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
-    }
+    // First create a date object from the input
+    const d = new Date(date);
+    
+    // Convert the date to the user's selected timezone
+    // This ensures all dates shown in the app respect the selected timezone
+    return new Date(d.toLocaleString('en-US', { timeZone: userTimezone })).toLocaleString([], {
+        year: 'numeric',     // Show full year (e.g., 2025)
+        month: 'numeric',    // Show month as number
+        day: 'numeric',      // Show day of month
+        hour: '2-digit',     // Show hours in 2-digit format
+        minute: '2-digit'    // Show minutes in 2-digit format
+    });
+}
 
     function formatEarnings(amount) {
         return `$${amount.toFixed(2)}`;
     }
     
     function updateLocalTime() {
-        const now = new Date();
-        const dateString = now.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-        const timeString = now.toLocaleTimeString();
-        localTimeDisplay.textContent = `${dateString}, ${timeString}`;
-        userTimeZoneDisplay.textContent = now.toLocaleDateString(undefined, { day: '2-digit', timeZoneName: 'short' }).slice(4);
-    }
+    // Create a new date object for current time
+    const now = new Date();
+    
+    // Convert current time to user's selected timezone
+    const timeZoneDate = new Date(now.toLocaleString('en-US', { timeZone: userTimezone }));
+    
+    // Format the date part with full details
+    const dateString = timeZoneDate.toLocaleDateString(undefined, { 
+        weekday: 'long',     // e.g., "Monday"
+        year: 'numeric',     // e.g., "2025"
+        month: 'long',       // e.g., "October"
+        day: 'numeric'       // e.g., "10"
+    });
+    
+    // Format the time part
+    const timeString = timeZoneDate.toLocaleTimeString(undefined, { 
+        hour: '2-digit',     // e.g., "07"
+        minute: '2-digit',   // e.g., "31"
+        second: '2-digit'    // e.g., "20"
+    });
+    
+    // Update the display in the footer
+    localTimeDisplay.textContent = `${dateString}, ${timeString}`;
+    // Show the current timezone name (replace underscores with spaces for readability)
+    userTimeZoneDisplay.textContent = userTimezone.replace(/_/g, ' ');
+}
 
     function updateStorageInfo() {
         const totalBytes = new Blob([JSON.stringify(localStorage)]).size;
@@ -1865,6 +1906,13 @@
 
     // Event Listeners
     document.addEventListener('DOMContentLoaded', () => {
+        // Populate timezone select
+    function populateTimezones() {
+        const timeZones = Intl.supportedValuesOf('timeZone');
+        timezoneSelect.innerHTML = timeZones.map(zone => 
+            `<option value="${zone}" ${zone === userTimezone ? 'selected' : ''}>${zone.replace(/_/g, ' ')}</option>`
+        ).join('');
+    }
         // Tracker buttons
         startCallBtn.addEventListener('click', startLiveCall);
         endCallBtn.addEventListener('click', endLiveCall);
@@ -1902,6 +1950,16 @@
         if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
         }
+
+// Timezone change handler
+    timezoneSelect.addEventListener('change', (e) => {
+        userTimezone = e.target.value;
+        localStorage.setItem('userTimezone', userTimezone);
+        displayCalls();      // Updates the call log table
+        updateStatistics(); // Updates all stats (daily/monthly earnings, etc.)
+        updateLocalTime();  // Updates the time shown in footer
+        showToast('Time zone updated!');
+    });        
 
         // Rates
         rateSelect.addEventListener('change', saveLastSelectedRate);
@@ -2130,6 +2188,7 @@
         updateStorageInfo();
         renderPaymentCycles();
         updateLocalTime();
+        populateTimezones();
         setInterval(updateLocalTime, 1000);
 
         // Set default date for stats date picker
