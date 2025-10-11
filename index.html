@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
+        <style>
         /* Drag and Drop Styles */
         .draggable-card {
             cursor: grab;
@@ -818,7 +818,6 @@
         </table>
     </div>
 </div>
-
 <div id="call-modal" style="display: none;"
      role="dialog" aria-labelledby="modal-title" aria-modal="true" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
     <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-md">
@@ -853,6 +852,7 @@
         </form>
     </div>
 </div>
+
 <div id="settings-modal" style="display: none;"
      role="dialog" aria-labelledby="settings-modal-title" aria-modal="true" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
     <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-md">
@@ -862,15 +862,16 @@
                 <i class="fas fa-times"></i>
             </button>
         </div>
+        <!-- Time Zone Settings Section (Keep this one, remove any duplicates) -->
         <div class="border-b border-gray-200 dark:border-gray-700 pb-4">
-    <h4 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-3">Time Zone Settings</h4>
-    <div class="mb-4">
-        <label for="timezone-select" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Select Your Time Zone</label>
-        <select id="timezone-select" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
-        </select>
-    </div>
-</div>
-               <div class="space-y-4">
+            <h4 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-3">Time Zone Settings</h4>
+            <div class="mb-4">
+                <label for="timezone-select" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Select Your Time Zone</label>
+                <select id="timezone-select" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
+                </select>
+            </div>
+        </div>
+        <div class="space-y-4">
             <div class="border-b border-gray-200 dark:border-gray-700 pb-4">
                 <h4 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-3">Data Management</h4>
                 <div class="flex flex-col gap-2">
@@ -970,8 +971,6 @@
         </form>
     </div>
 </div>
-
-
 <footer class="border-t border-gray-200 dark:border-gray-700 mt-8">
     <div class="container mx-auto px-4 py-8 text-center">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center">
@@ -1007,152 +1006,7 @@
         </div>
     </div>
 </footer>
-
 <script>
-    // Drag and Drop Functions
-    function setupDragAndDrop() {
-        const cards = document.querySelectorAll('.draggable-card');
-        let draggedCard = null;
-        let placeholder = null;
-
-        cards.forEach(card => {
-            card.addEventListener('dragstart', (e) => {
-                draggedCard = card;
-                card.classList.add('dragging');
-                e.dataTransfer.setData('text/plain', card.dataset.cardId);
-                e.dataTransfer.effectAllowed = 'move';
-                
-                // Create a placeholder
-                placeholder = document.createElement('div');
-                placeholder.className = 'draggable-card placeholder';
-                placeholder.style.height = `${card.offsetHeight}px`;
-                placeholder.style.width = `${card.offsetWidth}px`;
-            });
-
-            card.addEventListener('dragend', () => {
-                card.classList.remove('dragging');
-                if (placeholder && placeholder.parentNode) {
-                    placeholder.parentNode.removeChild(placeholder);
-                }
-                draggedCard = null;
-                placeholder = null;
-                saveCardPositions();
-            });
-
-            card.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                e.dataTransfer.dropEffect = 'move';
-                
-                if (!draggedCard || card === draggedCard) return;
-                
-                const rect = card.getBoundingClientRect();
-                const midY = rect.top + rect.height / 2;
-                
-                if (e.clientY < midY) {
-                    card.parentNode.insertBefore(placeholder, card);
-                } else {
-                    card.parentNode.insertBefore(placeholder, card.nextSibling);
-                }
-            });
-
-            card.addEventListener('drop', (e) => {
-                e.preventDefault();
-                if (!draggedCard || card === draggedCard) return;
-                
-                const rect = card.getBoundingClientRect();
-                const midY = rect.top + rect.height / 2;
-                
-                if (e.clientY < midY) {
-                    card.parentNode.insertBefore(draggedCard, card);
-                } else {
-                    card.parentNode.insertBefore(draggedCard, card.nextSibling);
-                }
-            });
-        });
-
-        // Make grid containers droppable
-        const grids = document.querySelectorAll('#dashboard-grid, #right-column, #stats-cards, #monthly-earnings-cards');
-        grids.forEach(grid => {
-            grid.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                e.dataTransfer.dropEffect = 'move';
-                
-                if (!draggedCard) return;
-                
-                // If grid is empty or we're at the end, append
-                if (grid.children.length === 0 || 
-                    e.clientY > grid.lastElementChild.getBoundingClientRect().bottom) {
-                    grid.appendChild(placeholder);
-                }
-            });
-
-            grid.addEventListener('drop', (e) => {
-                e.preventDefault();
-                if (!draggedCard) return;
-                
-                // If grid is empty or we're at the end, append
-                if (grid.children.length === 0 || 
-                    e.clientY > grid.lastElementChild.getBoundingClientRect().bottom) {
-                    grid.appendChild(draggedCard);
-                }
-            });
-        });
-    }
-
-    function saveCardPositions() {
-        const positions = {
-            dashboard: Array.from(document.querySelectorAll('#dashboard-grid > .draggable-card')).map(card => card.dataset.cardId),
-            rightColumn: Array.from(document.querySelectorAll('#right-column > .draggable-card')).map(card => card.dataset.cardId),
-            stats: Array.from(document.querySelectorAll('#stats-cards > .draggable-card')).map(card => card.dataset.cardId),
-            monthly: Array.from(document.querySelectorAll('#monthly-earnings-cards > .draggable-card')).map(card => card.dataset.cardId)
-        };
-        localStorage.setItem('cardPositions', JSON.stringify(positions));
-    }
-
-    function loadCardPositions() {
-        const savedPositions = localStorage.getItem('cardPositions');
-        if (!savedPositions) return;
-
-        try {
-            const positions = JSON.parse(savedPositions);
-            const allCards = document.querySelectorAll('.draggable-card');
-            const cardMap = {};
-            
-            allCards.forEach(card => {
-                cardMap[card.dataset.cardId] = card;
-                card.remove();
-            });
-
-            // Reinsert cards in saved order
-            positions.dashboard.forEach(id => {
-                if (cardMap[id]) {
-                    document.getElementById('dashboard-grid').appendChild(cardMap[id]);
-                }
-            });
-
-            positions.rightColumn.forEach(id => {
-                if (cardMap[id]) {
-                    document.getElementById('right-column').appendChild(cardMap[id]);
-                }
-            });
-
-            positions.stats.forEach(id => {
-                if (cardMap[id]) {
-                    document.getElementById('stats-cards').appendChild(cardMap[id]);
-                }
-            });
-
-            positions.monthly.forEach(id => {
-                if (cardMap[id]) {
-                    document.getElementById('monthly-earnings-cards').appendChild(cardMap[id]);
-                }
-            });
-
-        } catch (e) {
-            console.error('Failed to load card positions:', e);
-        }
-    }
-
     // Global variables
     const startCallBtn = document.getElementById('start-call-btn');
     const endCallBtn = document.getElementById('end-call-btn');
@@ -1191,7 +1045,7 @@
     const todayEarningsDisplay = document.getElementById('today-earnings');
     const goalEstimateDisplay = document.getElementById('goal-estimate');
     const firstHalfEarningsDisplay = document.getElementById('first-half-earnings');
-    const secondHalfEarningsDisplay = document = document.getElementById('second-half-earnings');
+    const secondHalfEarningsDisplay = document.getElementById('second-half-earnings');
     const monthlyTotalEarningsDisplay = document.getElementById('monthly-total-earnings');
     const goalForm = document.getElementById('goal-form');
     const goalAmountInput = document.getElementById('goal-amount');
@@ -1221,12 +1075,12 @@
     const cycleStartDateInput = document.getElementById('cycle-start-date-input');
     const cycleEndDateInput = document.getElementById('cycle-end-date-input');
     const cyclePayDateInput = document.getElementById('cycle-pay-date-input');
-    
     const filterTodayBtn = document.getElementById('filter-today');
     const filterWeekBtn = document.getElementById('filter-week');
     const filterMonthBtn = document.getElementById('filter-month');
-
     const timezoneSelect = document.getElementById('timezone-select');
+
+    // Initialize timezone
     let userTimezone = localStorage.getItem('userTimezone') || Intl.DateTimeFormat().resolvedOptions().timeZone;
     
     // Bug Fix: Add try-catch for local storage parsing to prevent app crash on corrupted data
@@ -1257,7 +1111,7 @@
     let editingCallIndex = null;
     let isEditingCycle = false;
     let editingCycleIndex = null;
-    let callLogFilter = 'today'; // New state for filtering
+    let callLogFilter = 'today';
 
     // Helper Functions
     function formatTime(milliseconds) {
@@ -1270,7 +1124,6 @@
 
     function formatDate(date) {
         if (!date) return 'N/A';
-        // Fix for time zone issue - use UTC methods
         const d = new Date(date);
         const year = d.getUTCFullYear();
         const month = String(d.getUTCMonth() + 1).padStart(2, '0');
@@ -1279,68 +1132,45 @@
     }
 
     function formatDateTime(date) {
-    // First create a date object from the input
-    const d = new Date(date);
-    
-    // Convert the date to the user's selected timezone
-    // This ensures all dates shown in the app respect the selected timezone
-    return new Date(d.toLocaleString('en-US', { timeZone: userTimezone })).toLocaleString([], {
-        year: 'numeric',     // Show full year (e.g., 2025)
-        month: 'numeric',    // Show month as number
-        day: 'numeric',      // Show day of month
-        hour: '2-digit',     // Show hours in 2-digit format
-        minute: '2-digit'    // Show minutes in 2-digit format
-    });
-}
+        const d = new Date(date);
+        return new Date(d.toLocaleString('en-US', { timeZone: userTimezone })).toLocaleString([], {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    }
 
     function formatEarnings(amount) {
         return `$${amount.toFixed(2)}`;
     }
-    
-    function updateLocalTime() {
-    const now = new Date();
-    const timeZoneDate = new Date(now.toLocaleString('en-US', { timeZone: userTimezone }));
-    const dateString = timeZoneDate.toLocaleDateString(undefined, { 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
-    });
-    const timeString = timeZoneDate.toLocaleTimeString(undefined, { 
-        hour: '2-digit', 
-        minute: '2-digit', 
-        second: '2-digit' 
-    });
-    localTimeDisplay.textContent = `${dateString}, ${timeString}`;
-    userTimeZoneDisplay.textContent = userTimezone.replace(/_/g, ' ');
-}
-    // Create a new date object for current time
-    const now = new Date();
-    
-    // Convert current time to user's selected timezone
-    const timeZoneDate = new Date(now.toLocaleString('en-US', { timeZone: userTimezone }));
-    
-    // Format the date part with full details
-    const dateString = timeZoneDate.toLocaleDateString(undefined, { 
-        weekday: 'long',     // e.g., "Monday"
-        year: 'numeric',     // e.g., "2025"
-        month: 'long',       // e.g., "October"
-        day: 'numeric'       // e.g., "10"
-    });
-    
-    // Format the time part
-    const timeString = timeZoneDate.toLocaleTimeString(undefined, { 
-        hour: '2-digit',     // e.g., "07"
-        minute: '2-digit',   // e.g., "31"
-        second: '2-digit'    // e.g., "20"
-    });
-    
-    // Update the display in the footer
-    localTimeDisplay.textContent = `${dateString}, ${timeString}`;
-    // Show the current timezone name (replace underscores with spaces for readability)
-    userTimeZoneDisplay.textContent = userTimezone.replace(/_/g, ' ');
-}
 
+    function updateLocalTime() {
+        const now = new Date();
+        const timeZoneDate = new Date(now.toLocaleString('en-US', { timeZone: userTimezone }));
+        const dateString = timeZoneDate.toLocaleDateString(undefined, { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        });
+        const timeString = timeZoneDate.toLocaleTimeString(undefined, { 
+            hour: '2-digit', 
+            minute: '2-digit', 
+            second: '2-digit' 
+        });
+        localTimeDisplay.textContent = `${dateString}, ${timeString}`;
+        userTimeZoneDisplay.textContent = userTimezone.replace(/_/g, ' ');
+    }
+
+    function populateTimezones() {
+        const timeZones = Intl.supportedValuesOf('timeZone');
+        timezoneSelect.innerHTML = timeZones.map(zone => 
+            `<option value="${zone}" ${zone === userTimezone ? 'selected' : ''}>${zone.replace(/_/g, ' ')}</option>`
+        ).join('');
+    }
+        // Storage and Update Functions
     function updateStorageInfo() {
         const totalBytes = new Blob([JSON.stringify(localStorage)]).size;
         const totalKB = totalBytes / 1024;
@@ -1410,7 +1240,7 @@
             });
             const cycleEarnings = cycleCalls.reduce((sum, call) => sum + call.earned, 0);
             cycleEarningsDisplay.textContent = formatEarnings(cycleEarnings);
-            // Fix for date display
+            
             const cycleStartLocal = new Date(currentCycle.startDate);
             const cycleEndLocal = new Date(currentCycle.endDate);
             const cyclePayLocal = new Date(currentCycle.payDate);
@@ -1442,10 +1272,8 @@
 
     function saveCalls() {
         localStorage.setItem('calls', JSON.stringify(calls));
-        // displayCalls();
         updateStatistics();
         updateStorageInfo();
-        // Re-render the call log based on the current filter
         if (callLogFilter === 'date') {
             displayCallsByDate(statsDatePicker.value);
         } else {
@@ -1614,321 +1442,8 @@
             saveCalls();
         }
     }
-
-    function editCall(index) {
-        const callToEdit = calls[index];
-        isEditingCall = true;
-        editingCallIndex = index;
-        document.getElementById('modal-title').textContent = 'Edit Call';
-        callForm.dataset.editingIndex = index;
-
-        const date = new Date(callToEdit.startTime);
-        const yyyy = date.getFullYear();
-        const mm = String(date.getMonth() + 1).padStart(2, '0');
-        const dd = String(date.getDate()).padStart(2, '0');
-        const hh = String(date.getHours()).padStart(2, '0');
-        const min = String(date.getMinutes()).padStart(2, '0');
-        callDateInput.value = `${yyyy}-${mm}-${dd}T${hh}:${min}`;
-        
-        const durationSeconds = Math.floor(callToEdit.duration / 1000);
-        callDurationHoursInput.value = Math.floor(durationSeconds / 3600);
-        callDurationMinutesInput.value = Math.floor((durationSeconds % 3600) / 60);
-        callDurationSecondsInput.value = durationSeconds % 60;
-        
-        callRateSelect.value = callToEdit.rate;
-
-        callModal.style.display = 'flex';
-    }
-
-    function handleCallFormSubmit(e) {
-        e.preventDefault();
-        
-        const durationHours = parseInt(callDurationHoursInput.value) || 0;
-        const durationMinutes = parseInt(callDurationMinutesInput.value) || 0;
-        const durationSeconds = parseInt(callDurationSecondsInput.value) || 0;
-        const totalDuration = (durationHours * 3600 + durationMinutes * 60 + durationSeconds) * 1000;
-        const rate = parseFloat(callRateSelect.value);
-        const earnings = (totalDuration / (1000 * 60)) * rate;
-
-        // Bug Fix 2: Manually parse datetime-local to handle timezone correctly
-        const dateTimeLocalStr = callDateInput.value;
-        const parts = dateTimeLocalStr.match(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
-        const callDate = new Date(parts[1], parts[2] - 1, parts[3], parts[4], parts[5]);
-
-        const newCall = {
-            startTime: callDate.toISOString(),
-            duration: totalDuration,
-            rate: rate,
-            earned: earnings
-        };
-
-        if (isEditingCall) {
-            calls[editingCallIndex] = newCall;
-        } else {
-            // Bug Fix 3: Ensure new call is pushed to the global calls array
-            calls.push(newCall);
-        }
-
-        saveCalls();
-        closeCallModal();
-    }
-    
-    // Live Call Logic
-    function startLiveCall() {
-        if (liveCallTimerId) {
-            alert('A call is already in progress.');
-            return;
-        }
-        if (rates.length === 0) {
-            alert('Please add a rate before starting a call.');
-            return;
-        }
-        startCallBtn.style.display = 'none';
-        endCallBtn.style.display = 'block';
-        liveCallInfo.style.display = 'flex';
-        // UI Improvement: Add pulse effect to live call info box
-        liveCallInfo.classList.add('active-call-pulse');
-
-        liveCallStart = Date.now();
-        currentCallRate = parseFloat(rateSelect.value);
-
-        liveCallTimerId = setInterval(() => {
-            const elapsed = Date.now() - liveCallStart;
-            liveCallTimerDisplay.textContent = formatTime(elapsed);
-            const earnings = (elapsed / (1000 * 60)) * currentCallRate;
-            liveCallEarningsDisplay.textContent = formatEarnings(earnings);
-        }, 1000);
-        activeTimers.add(liveCallTimerId);
-    }
-
-    function endLiveCall() {
-        if (!liveCallTimerId) return;
-
-        clearInterval(liveCallTimerId);
-        activeTimers.delete(liveCallTimerId);
-        liveCallTimerId = null;
-
-        const endTime = Date.now();
-        const duration = endTime - liveCallStart;
-        const earned = (duration / (1000 * 60)) * currentCallRate;
-
-        const newCall = {
-            startTime: new Date(liveCallStart).toISOString(),
-            duration: duration,
-            rate: currentCallRate,
-            earned: earned
-        };
-
-        calls.push(newCall);
-        saveCalls();
-
-        startCallBtn.style.display = 'block';
-        endCallBtn.style.display = 'none';
-        liveCallInfo.style.display = 'none';
-        // UI Improvement: Remove pulse effect
-        liveCallInfo.classList.remove('active-call-pulse');
-        liveCallTimerDisplay.textContent = '00:00:00';
-        liveCallEarningsDisplay.textContent = '$0.00 earned';
-    }
-
-    // Modal Functions
-    function openCallModal() {
-        isEditingCall = false;
-        editingCallIndex = null;
-        document.getElementById('modal-title').textContent = 'Add Call';
-        const now = new Date();
-        const year = now.getFullYear();
-        const month = String(now.getMonth() + 1).padStart(2, '0');
-        const day = String(now.getDate()).padStart(2, '0');
-        const hour = String(now.getHours()).padStart(2, '0');
-        const minute = String(now.getMinutes()).padStart(2, '0');
-        callDateInput.value = `${year}-${month}-${day}T${hour}:${minute}`;
-        callDurationHoursInput.value = 0;
-        callDurationMinutesInput.value = 0;
-        callDurationSecondsInput.value = 0;
-        if (rates.length > 0) {
-            callRateSelect.value = rateSelect.value;
-        }
-        callModal.style.display = 'flex';
-    }
-
-    function closeCallModal() {
-        callModal.style.display = 'none';
-    }
-
-    function openSettingsModal() {
-        settingsModal.style.display = 'flex';
-    }
-
-    function closeSettingsModal() {
-        settingsModal.style.display = 'none';
-    }
-
-    function openEditCycleModal() {
-        editCycleModal.style.display = 'flex';
-    }
-
-    function closeEditCycleModal() {
-        editCycleModal.style.display = 'none';
-        isEditingCycle = false;
-        editingCycleIndex = null;
-        editCycleForm.reset();
-    }
-
-    // Payment Cycle Management
-    function renderPaymentCycles() {
-        paymentCyclesToggle.checked = paymentCyclesEnabled;
-        if (paymentCyclesEnabled) {
-            paymentCyclesConfig.classList.remove('hidden');
-        } else {
-            paymentCyclesConfig.classList.add('hidden');
-        }
-
-        paymentCyclesList.innerHTML = '';
-        if (paymentCycles.length === 0) {
-            paymentCyclesList.innerHTML = `<tr><td colspan="4" class="text-center py-4 text-gray-500 dark:text-gray-400">No cycles configured.</td></tr>`;
-            return;
-        }
-        
-        const sortedCycles = [...paymentCycles].sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
-
-        sortedCycles.forEach((cycle, index) => {
-            const row = document.createElement('tr');
-            row.className = 'hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors';
-            const originalIndex = paymentCycles.findIndex(c => c.startDate === cycle.startDate && c.endDate === cycle.endDate);
-            
-            const startDisplay = new Date(cycle.startDate).toLocaleDateString();
-            const endDisplay = new Date(cycle.endDate).toLocaleDateString();
-            const payDisplay = new Date(cycle.payDate).toLocaleDateString();
-
-            row.innerHTML = `
-                <td class="px-2 py-2">${startDisplay}</td>
-                <td class="px-2 py-2">${endDisplay}</td>
-                <td class="px-2 py-2">${payDisplay}</td>
-                <td class="px-2 py-2 text-right">
-                    <button class="edit-cycle-btn text-blue-500 hover:text-blue-700 mr-2" data-index="${originalIndex}">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                    <button class="delete-cycle-btn text-red-500 hover:text-red-700" data-index="${originalIndex}">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </td>
-            `;
-            paymentCyclesList.appendChild(row);
-        });
-
-        document.querySelectorAll('.edit-cycle-btn').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const index = parseInt(e.currentTarget.dataset.index);
-                editPaymentCycle(index);
-            });
-        });
-
-        document.querySelectorAll('.delete-cycle-btn').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const index = parseInt(e.currentTarget.dataset.index);
-                if (confirm('Are you sure you want to delete this payment cycle?')) {
-                    paymentCycles.splice(index, 1);
-                    savePaymentCycles();
-                }
-            });
-        });
-
-        const statsContainer = document.getElementById('stats-date-picker').closest('.bg-white');
-        const monthlyContainer = document.getElementById('monthly-earnings-cards').closest('.grid');
-        const cycleContainer = document.getElementById('payment-cycle-earnings-cards').closest('.grid');
-        if (paymentCyclesEnabled) {
-            monthlyEarningsCards.classList.add('hidden');
-            paymentCycleEarningsCards.classList.remove('hidden');
-        } else {
-            monthlyEarningsCards.classList.remove('hidden');
-            paymentCycleEarningsCards.classList.add('hidden');
-        }
-    }
-
-    function addPaymentCycle() {
-        isEditingCycle = false;
-        document.getElementById('edit-cycle-modal-title').textContent = 'Add Payment Cycle';
-        openEditCycleModal();
-    }
-
-    function editPaymentCycle(index) {
-        const cycleToEdit = paymentCycles[index];
-        isEditingCycle = true;
-        editingCycleIndex = index;
-        document.getElementById('edit-cycle-modal-title').textContent = 'Edit Payment Cycle';
-
-        cycleStartDateInput.value = cycleToEdit.startDate.split('T')[0];
-        cycleEndDateInput.value = cycleToEdit.endDate.split('T')[0];
-        cyclePayDateInput.value = cycleToEdit.payDate.split('T')[0];
-        openEditCycleModal();
-    }
-
-    function handleEditCycleFormSubmit(e) {
-        e.preventDefault();
-
-        // Fix for timezone bug: use UTC dates
-        const startDate = new Date(cycleStartDateInput.value);
-        const endDate = new Date(cycleEndDateInput.value);
-        const payDate = new Date(cyclePayDateInput.value);
-
-        if (!startDate || !endDate || !payDate) {
-            alert('Please fill in all dates.');
-            return;
-        }
-
-        // Normalize to start of day in UTC
-        const start = new Date(startDate.getUTCFullYear(), startDate.getUTCMonth(), startDate.getUTCDate());
-        const end = new Date(endDate.getUTCFullYear(), endDate.getUTCMonth(), endDate.getUTCDate());
-        const pay = new Date(payDate.getUTCFullYear(), payDate.getUTCMonth(), payDate.getUTCDate());
-
-        if (end < start) {
-            alert('End date cannot be before start date.');
-            return;
-        }
-
-        const newCycle = {
-            startDate: start.toISOString(),
-            endDate: end.toISOString(),
-            payDate: pay.toISOString()
-        };
-
-        if (isEditingCycle) {
-            paymentCycles[editingCycleIndex] = newCycle;
-        } else {
-            paymentCycles.push(newCycle);
-        }
-
-        savePaymentCycles();
-        closeEditCycleModal();
-        showToast('Payment cycle saved!');
-    }
-    
-    // UI function to handle active filter button styling
-    function updateCallLogFilterButtons() {
-        const buttons = [filterTodayBtn, filterWeekBtn, filterMonthBtn];
-        buttons.forEach(btn => {
-            btn.classList.remove('bg-blue-500', 'text-white', 'dark:bg-blue-600', 'dark:text-white');
-            btn.classList.add('bg-gray-200', 'text-gray-700', 'dark:bg-gray-700', 'dark:text-gray-200');
-        });
-
-        const activeBtn = document.getElementById(`filter-${callLogFilter}`);
-        if (activeBtn) {
-            activeBtn.classList.remove('bg-gray-200', 'text-gray-700', 'dark:bg-gray-700', 'dark:text-gray-200');
-            activeBtn.classList.add('bg-blue-500', 'text-white', 'dark:bg-blue-600', 'dark:text-white');
-        }
-    }
-
-
-    // Event Listeners
+        // Event Listeners
     document.addEventListener('DOMContentLoaded', () => {
-        // Populate timezone select
-    function populateTimezones() {
-    const timeZones = Intl.supportedValuesOf('timeZone');
-    timezoneSelect.innerHTML = timeZones.map(zone => 
-        `<option value="${zone}" ${zone === userTimezone ? 'selected' : ''}>${zone.replace(/_/g, ' ')}</option>`
-    ).join('');
-}
         // Tracker buttons
         startCallBtn.addEventListener('click', startLiveCall);
         endCallBtn.addEventListener('click', endLiveCall);
@@ -1967,15 +1482,15 @@
             document.documentElement.classList.add('dark');
         }
 
-// Timezone change handler
-    timezoneSelect.addEventListener('change', (e) => {
-        userTimezone = e.target.value;
-        localStorage.setItem('userTimezone', userTimezone);
-        displayCalls();      // Updates the call log table
-        updateStatistics(); // Updates all stats (daily/monthly earnings, etc.)
-        updateLocalTime();  // Updates the time shown in footer
-        showToast('Time zone updated!');
-    });        
+        // Timezone change handler
+        timezoneSelect.addEventListener('change', (e) => {
+            userTimezone = e.target.value;
+            localStorage.setItem('userTimezone', userTimezone);
+            displayCalls();      
+            updateStatistics(); 
+            updateLocalTime();  
+            showToast('Time zone updated!');
+        });
 
         // Rates
         rateSelect.addEventListener('change', saveLastSelectedRate);
@@ -2194,7 +1709,7 @@
         loadCardPositions();
         setupDragAndDrop();
         displayRates();
-        populateRateSelects(); // Call before setting the value
+        populateRateSelects();
         if (rates.length > 0 && lastSelectedRate) {
             rateSelect.value = lastSelectedRate;
         }
